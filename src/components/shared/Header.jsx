@@ -5,8 +5,8 @@ import { format } from 'date-fns';
 
 const Header = () => {
     return (
-        <div className='container w-11/12 mx-auto border border-amber-300 space-y-2'>
-            <div className='flex flex-col items-center gap-3 mt-8 mb-6'>
+        <div className='container w-11/12 mx-auto space-y-2'>
+            <div className='flex flex-col items-center gap-3 mt-8 mb-2'>
                 <Image
                     src={logo}
                     alt='Header Logo'

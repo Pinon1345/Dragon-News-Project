@@ -77,7 +77,7 @@ const NotFoundPage = () => {
                             </Link>
 
                             <Link
-                                href="/news"
+                                href="/"
                                 className="rounded-xl border border-gray-300 bg-white px-8 py-3 font-semibold text-gray-700 transition-all duration-300 hover:border-gray-400 hover:bg-gray-50"
                             >
                                 Browse News
