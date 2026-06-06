@@ -15,7 +15,7 @@ const LeftSideBar = ({ categories, activeId }) => {
                             key={category.category_id}
                             className={`
                             ${activeId === category.category_id ?
-                                    "bg-red-200 rounded-2xl font-bold text-lg text-center transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:bg-red-600 hover:text-white cursor-pointer"
+                                    "bg-red-300 rounded-2xl font-bold text-lg text-center transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:bg-red-600 hover:text-white cursor-pointer"
                                     :
                                     "bg-slate-100 rounded-2xl font-bold text-lg text-center transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:bg-slate-600 hover:text-white cursor-pointer"}`} >
 
