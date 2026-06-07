@@ -1,5 +1,9 @@
 import React from 'react';
 
+export const metadata = {
+    title: "Dragon News Website || Career",
+};
+
 const CareerPage = () => {
     return (
         <div className='bg-[#F3F3F3] container w-11/12 mx-auto border-4 border-gray-100 shadow-lg px-4 py-6 my-8 rounded-2xl text-center'>

@@ -3,9 +3,19 @@ import { getNewsDetailsById } from '@/lib/data';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { MdRemoveRedEye } from 'react-icons/md';
-import StarImg from "@/assets/star.png";
 import { FaArrowLeft } from 'react-icons/fa';
+
+export const generateMetadata = async ({ params }) => {
+    const { id } = await params
+    const news = await getNewsDetailsById(id)
+    console.log("Meta Params", news);
+
+    return {
+        title: news.title,
+        description: news.details,
+    }
+
+}
 
 const NewsDetailsPage = async ({ params }) => {
     const { id } = await params
@@ -41,7 +51,7 @@ const NewsDetailsPage = async ({ params }) => {
 
                             <div className='flex items-center justify-items-start mt-6 mb-2'>
 
-                                <Link href={"/"}>
+                                <Link href={`/category/${news.category_id}`}>
 
                                     <button className='btn bg-[#D72050] text-white font-semibold text-lg rounded-lg py-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:bg-[#B81C45]'><FaArrowLeft></FaArrowLeft> All news in this category</button>
 
