@@ -1,6 +1,22 @@
+"use client";
+
+import Link from 'next/link';
 import React from 'react';
+import { useForm } from 'react-hook-form';
 
 const LoginPage = () => {
+
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors }
+    } = useForm()
+
+    const handleLoginFunc = (data) => {
+        console.log("Form Data", data);
+    }
+
     return (
         <div className='container w-11/12 mx-auto min-h-screen flex flex-col justify-center items-center'>
 
@@ -15,12 +31,14 @@ const LoginPage = () => {
                 </h2>
 
                 <p className="text-center text-sm text-gray-500 mb-8 mt-3">
-                    Welcome back! Please enter your details.
+                    Welcome! Please enter your details.
                 </p>
 
                 {/* Form */}
 
-                <form className="space-y-4 border-t-2 border-gray-200 pt-8">
+                <form
+                    onSubmit={handleSubmit(handleLoginFunc)}
+                    className="space-y-4 border-t-2 border-gray-200 pt-8">
 
                     {/* Email */}
 
@@ -32,7 +50,9 @@ const LoginPage = () => {
                             type="email"
                             placeholder="Enter your email address"
                             className="bg-[#F3F3F3] mt-2 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition"
+                            {...register("email", { required: "Email field is required" })}
                         />
+                        {errors.email && <p className='mt-2 text-xs font-medium tracking-wide text-red-500'>{errors.email.message}</p>}
                     </div>
 
                     {/* Password */}
@@ -45,7 +65,9 @@ const LoginPage = () => {
                             type="password"
                             placeholder="Enter your password"
                             className="bg-[#F3F3F3] mt-2 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition"
+                            {...register("password", { required: "Password field is required" })}
                         />
+                        {errors.password && <p className='mt-2 text-xs font-medium tracking-wide text-red-500'>{errors.password.message}</p>}
                     </div>
 
                     {/* Button */}
@@ -61,10 +83,12 @@ const LoginPage = () => {
                 {/* Footer */}
 
                 <p className="text-center text-sm text-gray-500 mt-6">
-                    Dont’t Have An Account ?{" "}
-                    <span className="text-red-600 font-semibold cursor-pointer hover:underline">
-                        Register
-                    </span>
+                    Don’t Have An Account ?{" "}
+                    <Link href={"/register"}>
+                        <span className="text-red-600 font-semibold cursor-pointer hover:underline">
+                            Register
+                        </span>
+                    </Link>
                 </p>
             </div>
         </div>
