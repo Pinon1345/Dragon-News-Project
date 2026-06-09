@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { AiFillGithub, AiFillTwitterCircle } from 'react-icons/ai';
 import { FaFacebook, FaGoogle, FaInstagramSquare } from 'react-icons/fa';
@@ -6,8 +8,26 @@ import imageTwo from "@/assets/class.png";
 import imageThree from "@/assets/playground.png";
 import Image from 'next/image';
 import imageBg from "@/assets/bg.png";
+import { authClient } from '@/lib/auth-client';
 
 const RightSideBar = () => {
+
+    const handleGoogleSignIn = async () => {
+        const data = await authClient.signIn.social({
+            provider: "google",
+        });
+
+        console.log("Google Signin", data);
+    }
+
+    const handleGithubSignIn = async () => {
+        const data = await authClient.signIn.social({
+            provider: "github"
+        });
+
+        console.log("Github Signin", data);
+    }
+
     return (
         <div className='sm:col-span-1 md:col-span-2 lg:col-span-3'>
 
@@ -17,11 +37,21 @@ const RightSideBar = () => {
             <div className='flex flex-col items-center gap-4'>
                 <div className='text-blue-400 font-semibold flex flex-row items-center gap-2'>
                     <FaGoogle className='w-6 h-6'></FaGoogle>
-                    <button className='btn btn-outline btn-info rounded-xl border-4 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:bg-blue-600 hover:text-white cursor-pointer'>Login With Google</button>
+                    <button
+                        onClick={handleGoogleSignIn}
+                        className='btn btn-outline btn-info rounded-xl border-4 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:bg-blue-600 hover:text-white cursor-pointer'
+                    >
+                        Login With Google
+                    </button>
                 </div>
                 <div className='flex flex-row items-center gap-2'>
                     <AiFillGithub className='w-7 h-7'></AiFillGithub>
-                    <button className='btn btn-outline rounded-xl border-4 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:bg-slate-600 hover:text-white cursor-pointer'>Login With Github</button>
+                    <button
+                        onClick={handleGithubSignIn}
+                        className='btn btn-outline rounded-xl border-4 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:bg-slate-600 hover:text-white cursor-pointer'
+                    >
+                        Login With Github
+                    </button>
                 </div>
             </div>
 

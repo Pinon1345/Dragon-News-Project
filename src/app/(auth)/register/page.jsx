@@ -2,8 +2,9 @@
 
 import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { IoIosEye, IoIosEyeOff } from 'react-icons/io';
 
 const RegisterPage = () => {
     const {
@@ -33,10 +34,12 @@ const RegisterPage = () => {
             alert(error.message)
         }
 
-        if(res){
+        if (res) {
             alert("Register of your account is Successful")
         }
     }
+
+    const [isShowPassword, setIsShowPassword] = useState(false);
 
     return (
         <div className='container w-11/12 mx-auto min-h-screen flex flex-col justify-center items-center'>
@@ -108,16 +111,19 @@ const RegisterPage = () => {
 
                     {/* Password */}
 
-                    <div>
+                    <div className='relative'>
                         <label className="text-lg font-semibold text-gray-700">
                             Password
                         </label>
                         <input
-                            type="password"
+                            type={isShowPassword ? "text" : "password"}
                             placeholder="Enter your password"
                             className="bg-[#F3F3F3] mt-2 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition"
                             {...register("password", { required: "Password field is required" })}
                         />
+                        <span className='absolute cursor-pointer right-3 top-13' onClick={() => setIsShowPassword(!isShowPassword)}>
+                            {isShowPassword ? <IoIosEye className='w-5 h-5'></IoIosEye> : <IoIosEyeOff className='w-5 h-5'></IoIosEyeOff>}
+                        </span>
                         {errors.password && <p className='mt-2 text-xs font-medium tracking-wide text-red-500'>{errors.password.message}</p>}
                     </div>
 
