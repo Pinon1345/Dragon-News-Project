@@ -26,6 +26,14 @@ const LoginPage = () => {
         });
 
         console.log(res, error);
+
+        if (error) {
+            alert(error.message)
+        }
+
+        if (res) {
+            alert("Login Successful")
+        }
     }
 
     const [isShowPassword, setIsShowPassword] = useState(false);
